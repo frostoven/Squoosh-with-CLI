@@ -478,7 +478,7 @@ export default class Compress extends Component<Props, State> {
       );
 
       if (result === 'usage') {
-        open('https://github.com/GoogleChromeLabs/squoosh/tree/dev/cli');
+        open('https://www.npmjs.com/package/@squoosh/cli');
       }
     } catch (e) {
       this.props.showSnack(e);
