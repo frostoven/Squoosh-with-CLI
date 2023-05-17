@@ -22,7 +22,7 @@ img,
 
 html {
   background-color: #132605;
-  background-image: url("crt-background.png") !important;
+  background-image: url("crt-background.png");
 }
 
 html, body {

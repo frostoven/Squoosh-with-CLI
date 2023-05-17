@@ -63,8 +63,8 @@
   box-shadow: 0 0 1px #cbffc8, 0 0 3px #e5e5e5;
 }
 
-.content-padding .term-text a {
-  color: #ff9e3c;
+.content-padding .term-text a, .paste-btn {
+  color: #ff9e3c !important;
   text-shadow: 0 0 1px #ffdfc8, 0 0 2px #e5e5e5;
   text-decoration: underline;
 }
@@ -138,6 +138,8 @@
   font: inherit;
   color: inherit;
   font-size: 12pt;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .bottom-container {
