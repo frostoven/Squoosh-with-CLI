@@ -17,7 +17,6 @@ import * as initialApp from 'entry-data:client/initial-app';
 import swUrl from 'service-worker:sw';
 import * as compress from 'entry-data:client/lazy-app/Compress';
 import * as swBridge from 'entry-data:client/lazy-app/sw-bridge';
-import * as blobAnim from 'entry-data:shared/prerendered-app/Intro/blob-anim';
 
 // The processors and codecs
 // Simple stuff everyone gets:
@@ -58,8 +57,6 @@ let initialJs = new Set([
   ...compress.deps,
   swBridge.main,
   ...swBridge.deps,
-  blobAnim.main,
-  ...blobAnim.deps,
 ]);
 initialJs = subtractSets(
   initialJs,

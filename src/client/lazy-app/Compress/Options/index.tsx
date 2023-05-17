@@ -17,7 +17,7 @@ import Toggle from './Toggle';
 import Select from './Select';
 import { Options as QuantOptionsComponent } from 'features/processors/quantize/client';
 import { Options as ResizeOptionsComponent } from 'features/processors/resize/client';
-import { ImportIcon, SaveIcon, SwapIcon } from 'client/lazy-app/icons';
+import { CLIIcon, ImportIcon, SaveIcon, SwapIcon } from 'client/lazy-app/icons';
 
 interface Props {
   index: 0 | 1;
@@ -31,6 +31,7 @@ interface Props {
   onCopyToOtherSideClick(index: 0 | 1): void;
   onSaveSideSettingsClick(index: 0 | 1): void;
   onImportSideSettingsClick(index: 0 | 1): void;
+  onCopyCliClick(index: 0 | 1): void;
 }
 
 interface State {
@@ -135,6 +136,10 @@ export default class Options extends Component<Props, State> {
     this.props.onEncoderOptionsChange(this.props.index, newOptions);
   };
 
+  private onCopyCliClick = () => {
+    this.props.onCopyCliClick(this.props.index);
+  };
+
   private onCopyToOtherSideClick = () => {
     this.props.onCopyToOtherSideClick(this.props.index);
   };
@@ -169,6 +174,13 @@ export default class Options extends Component<Props, State> {
               <h3 class={style.optionsTitle}>
                 <div class={style.titleAndButtons}>
                   Edit
+                  <button
+                    className={style.cliButton}
+                    title="Copy npx command"
+                    onClick={this.onCopyCliClick}
+                  >
+                    <CLIIcon />
+                  </button>
                   <button
                     class={style.copyOverButton}
                     title="Copy settings to other side"

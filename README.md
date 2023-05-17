@@ -1,3 +1,19 @@
+# Fork details
+
+Google decided to punish the heathens by removing all CLI features from
+Squoosh. This was apparently due to staffing issues. What a time to be alive.
+
+This is an older / modified version that preserves the old stuff. Google
+penalises people when they clone other sites, so the major objectives of this
+repo is to 1) have a tutorial section on the CLI stuff and 2) have a completely
+different home screen.
+
+The original README follows below.
+
+<br>
+
+---
+
 # [Squoosh]!
 
 [Squoosh] is an image compression web app that reduces image sizes through numerous formats.
