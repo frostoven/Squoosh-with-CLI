@@ -6,7 +6,6 @@ import logoWithText from 'url:./imgs/logo-with-text.svg';
 import * as style from './style.css';
 import type SnackBarElement from 'shared/custom-els/snack-bar';
 import 'shared/custom-els/snack-bar';
-import { termText } from './style.css';
 
 const installButtonSource = 'introInstallButton-Purple';
 const supportsClipboardAPI =

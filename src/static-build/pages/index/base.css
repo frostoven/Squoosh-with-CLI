@@ -20,17 +20,36 @@ img,
   -webkit-touch-callout: none;
 }
 
+html {
+  background-color: #132605;
+  background-image: url("crt-background.png") !important;
+}
+
 html, body {
   height: 100%;
   padding: 0;
   margin: 0;
   font: 12px/1.3 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
-    Helvetica, Arial, 'Lucida Grande', sans-serif;
+  Helvetica, Arial, 'Lucida Grande', sans-serif;
   overflow: hidden;
   overscroll-behavior: none;
   contain: strict;
-  background-color: #132605;
-  background-size: 20px 20px;
+}
+
+body {
+  background-image: url("crt-scanline.png");
+  /*backdrop-filter: blur(0.5);*/
+  background-repeat: repeat-x;
+  animation: move-down 12s linear infinite;
+}
+
+@keyframes move-down {
+  0% {
+    background-position: 0 -100vh
+  }
+  25%, 100% {
+    background-position: 0 100vh
+  }
 }
 
 :global(#app) {
