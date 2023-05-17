@@ -2,17 +2,12 @@ import { h, Component } from 'preact';
 
 import { linkRef } from 'shared/prerendered-app/util';
 import '../../custom-els/loading-spinner';
-import githubLogo from 'url:./imgs/github-logo.svg';
 import logoWithText from 'url:./imgs/logo-with-text.svg';
 import * as style from './style.css';
 import type SnackBarElement from 'shared/custom-els/snack-bar';
 import 'shared/custom-els/snack-bar';
-import { startBlobs } from './blob-anim/meta';
+import { termText } from './style.css';
 
-const blobAnimImport =
-  !__PRERENDER__ && matchMedia('(prefers-reduced-motion: reduce)').matches
-    ? undefined
-    : import('./blob-anim');
 const installButtonSource = 'introInstallButton-Purple';
 const supportsClipboardAPI =
   !__PRERENDER__ && navigator.clipboard && navigator.clipboard.read;
@@ -40,6 +35,7 @@ export default class Intro extends Component<Props, State> {
   state: State = {
     showBlobSVG: true,
   };
+
   private fileInput?: HTMLInputElement;
   private blobCanvas?: HTMLCanvasElement;
   private installingViaButton = false;
@@ -53,17 +49,6 @@ export default class Intro extends Component<Props, State> {
 
     // Listen for the appinstalled event, indicating Squoosh has been installed.
     window.addEventListener('appinstalled', this.onAppInstalled);
-
-    if (blobAnimImport) {
-      blobAnimImport.then((module) => {
-        this.setState(
-          {
-            showBlobSVG: false,
-          },
-          () => module.startBlobAnim(this.blobCanvas!),
-        );
-      });
-    }
   }
 
   componentWillUnmount() {
@@ -185,14 +170,9 @@ export default class Intro extends Component<Props, State> {
             />
           )}
           <h1 class={style.logoContainer}>
-            <img
-              class={style.logo}
-              src={logoWithText}
-              alt="Squoosh"
-              width="539"
-              height="162"
-            />
+            old_squoosh
           </h1>
+          <span className={style.termText}>A fork of Squoosh that preserves CLI functionality</span>
           <div class={style.loadImg}>
             {showBlobSVG && (
               <svg
@@ -200,23 +180,6 @@ export default class Intro extends Component<Props, State> {
                 viewBox="-1.25 -1.25 2.5 2.5"
                 preserveAspectRatio="xMidYMid slice"
               >
-                {startBlobs.map((points) => (
-                  <path
-                    d={points
-                      .map((point, i) => {
-                        const nextI = i === points.length - 1 ? 0 : i + 1;
-                        let d = '';
-                        if (i === 0) {
-                          d += `M${point[2]} ${point[3]}`;
-                        }
-                        return (
-                          d +
-                          `C${point[4]} ${point[5]} ${points[nextI][0]} ${points[nextI][1]} ${points[nextI][2]} ${points[nextI][3]}`
-                        );
-                      })
-                      .join('')}
-                  />
-                ))}
               </svg>
             )}
             <div
@@ -229,7 +192,7 @@ export default class Intro extends Component<Props, State> {
                 </svg>
               </button>
               <div>
-                <span class={style.dropText}>Drop </span>OR{' '}
+                <span class={style.dropText}>Drop OR&nbsp;</span>
                 {supportsClipboardAPI ? (
                   <button class={style.pasteBtn} onClick={this.onPasteClick}>
                     Paste
@@ -240,26 +203,14 @@ export default class Intro extends Component<Props, State> {
               </div>
             </div>
           </div>
+          <div className={style.termText}>
+            No images are ever uploaded to our servers. All image processing is
+            done right in your browser.
+          </div>
         </div>
-        <div class={style.demosContainer}>
-          <svg viewBox="0 0 1920 140" class={style.topWave}>
-            <path
-              d="M1920 0l-107 28c-106 29-320 85-533 93-213 7-427-36-640-50s-427 0-533 7L0 85v171h1920z"
-              class={style.subWave}
-            />
-            <path
-              d="M0 129l64-26c64-27 192-81 320-75 128 5 256 69 384 64 128-6 256-80 384-91s256 43 384 70c128 26 256 26 320 26h64v96H0z"
-              class={style.mainWave}
-            />
-          </svg>
+        <div class={style.bottomContainer}>
         </div>
         <div class={style.footer}>
-          <svg viewBox="0 0 1920 79" class={style.topWave}>
-            <path
-              d="M0 59l64-11c64-11 192-34 320-43s256-5 384 4 256 23 384 34 256 21 384 14 256-30 320-41l64-11v94H0z"
-              class={style.footerWave}
-            />
-          </svg>
           <div class={style.contentPadding}>
             <footer class={style.footerItems}>
               <a
@@ -275,11 +226,10 @@ export default class Intro extends Component<Props, State> {
                 Squoosh CLI
               </a>
               <a
-                class={style.footerLinkWithLogo}
+                class={style.footerLink}
                 href="https://github.com/GoogleChromeLabs/squoosh"
               >
-                <img src={githubLogo} alt="" width="10" height="10" />
-                Source on Github
+                Github
               </a>
             </footer>
           </div>
