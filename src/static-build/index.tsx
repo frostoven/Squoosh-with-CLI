@@ -16,9 +16,6 @@ import { renderPage, writeFiles } from './utils';
 import IndexPage from './pages/index';
 import * as iconLargeMaskable from 'img-url:static-build/assets/icon-large-maskable.png';
 import * as iconLarge from 'img-url:static-build/assets/icon-large.png';
-import * as screenshot1 from 'img-url:static-build/assets/screenshot1.png';
-import * as screenshot2 from 'img-url:static-build/assets/screenshot2.jpg';
-import * as screenshot3 from 'img-url:static-build/assets/screenshot3.jpg';
 import dedent from 'dedent';
 import { lookup as lookupMime } from 'mime-types';
 
@@ -67,23 +64,7 @@ const toOutput: Output = {
       'Compress and compare images with different codecs, right in your browser.',
     lang: 'en',
     categories: ['photo', 'productivity', 'utilities'],
-    screenshots: [
-      {
-        src: screenshot1.default,
-        type: lookupMime(screenshot1.default),
-        sizes: manifestSize(screenshot1),
-      },
-      {
-        src: screenshot2.default,
-        type: lookupMime(screenshot2.default),
-        sizes: manifestSize(screenshot2),
-      },
-      {
-        src: screenshot3.default,
-        type: lookupMime(screenshot3.default),
-        sizes: manifestSize(screenshot3),
-      },
-    ],
+    screenshots: [],
     share_target: {
       action: '/?utm_medium=PWA&utm_source=share-target&share-target',
       method: 'POST',

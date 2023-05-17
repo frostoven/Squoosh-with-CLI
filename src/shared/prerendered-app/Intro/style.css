@@ -50,6 +50,25 @@
   padding-right: 4px;
 }
 
+.content-padding .term-text {
+  padding: 8px;
+  margin-top: 8px;
+  margin-bottom: 24px;
+  border: 3px solid #96e192;
+
+  /*border-top: 3px double #b7ffb4;*/
+  /*border-bottom: 3px double #b7ffb4;*/
+  /*border-left: 5px double #b7ffb4;*/
+  /*border-right: 5px double #b7ffb4;*/
+  box-shadow: 0 0 1px #cbffc8, 0 0 3px #e5e5e5;
+}
+
+.content-padding .term-text a {
+  color: #ff9e3c;
+  text-shadow: 0 0 1px #ffdfc8, 0 0 2px #e5e5e5;
+  text-decoration: underline;
+}
+
 .logo-container, .term-text, .footer-items {
   color: #ecf0eb;
   text-shadow: 0 0 2px #cbffc8, 0 0 2px #e5e5e5;

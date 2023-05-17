@@ -212,6 +212,21 @@ export default class Intro extends Component<Props, State> {
         </div>
         <div class={style.footer}>
           <div class={style.contentPadding}>
+            <div className={style.termText}>
+              Original code by Google, who has unfortunately dropped support for
+              the CLI component. This fork reintroduces the CLI component and is
+              maintained by <a href="https://www.frostoven.com">Frostoven</a>.
+
+              <br/><br/>
+
+              We create video games and scientific tools on&nbsp;
+              <a href="https://github.com/frostoven">GitHub</a>.
+              If you like our work, please consider supporting us on&nbsp;
+              <a href="https://www.patreon.com/frostoven">Patreon</a>&nbsp;
+              or&nbsp;
+              <a href="https://www.paypal.com/donate/?hosted_button_id=F9TUSZKQLQTRL">PayPal</a>.
+            </div>
+
             <footer class={style.footerItems}>
               <a
                 class={style.footerLink}
