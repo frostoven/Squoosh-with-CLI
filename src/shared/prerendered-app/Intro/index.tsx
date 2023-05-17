@@ -214,8 +214,9 @@ export default class Intro extends Component<Props, State> {
           <div class={style.contentPadding}>
             <div className={style.termText}>
               Original code by Google, who has unfortunately dropped support for
-              the CLI component. This fork reintroduces the CLI component and is
-              maintained by <a href="https://www.frostoven.com">Frostoven</a>.
+              the CLI component. This fork reintroduces the CLI component for
+              terminal use and is maintained by&nbsp;
+              <a href="https://www.frostoven.com">Frostoven</a>.
 
               <br/><br/>
 
