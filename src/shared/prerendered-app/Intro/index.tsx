@@ -169,7 +169,7 @@ export default class Intro extends Component<Props, State> {
           <h1 class={style.logoContainer}>term_squoosh</h1>
           <span className={style.termText}>
             An updated fork of Squoosh that{' '}
-            <a href="#">preserves CLI functionality</a>
+            <a href="/cli">preserves CLI functionality</a>
           </span>
           <div class={style.loadImg}>
             {showBlobSVG && (
@@ -233,10 +233,7 @@ export default class Intro extends Component<Props, State> {
               >
                 Privacy
               </a>
-              <a
-                class={style.footerLink}
-                href="https://www.npmjs.com/package/@squoosh/cli"
-              >
+              <a class={style.footerLink} href="/cli">
                 Squoosh CLI
               </a>
               <a

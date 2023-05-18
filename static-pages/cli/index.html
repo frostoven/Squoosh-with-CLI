@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="About page for term_squoosh, an updated fork of Squoosh that preserves CLI functionality.">
+  <title>term_squoosh - CLI Info</title>
+
+  <style>
+    * {
+      color: #fdfdfd;
+      background-color: #232323;
+    }
+
+    .menubar-item {
+      position: absolute;
+    }
+
+    a {
+      color: #ff9e3c!important;
+      text-decoration: underline;
+    }
+
+    .blog-data, footer {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .center-img {
+      margin-bottom: -4px;
+    }
+
+    code {
+      border: thin solid black;
+      background-color: #363d44;
+      border-radius: 4px;
+      padding: 4px;
+    }
+
+    pre code {
+      border: revert;
+      background-color: revert;
+      border-radius: revert;
+    }
+
+    pre {
+      background-color: #323232;
+    }
+
+    hr {
+      margin-top: 21px;
+      margin-bottom: 21px;
+      border: none;
+      border-top: 3px double #737373;
+      max-width: 900px;
+    }
+
+  </style>
+</head>
+<body>
+
+<a class="menubar-item" href="/">Home</a>
+<br>
+
+<div class="blog-data">
+  <h1>What this is</h1>
+
+  Squoosh has unfortunately discontinued the CLI tool and the CLI command
+  generator. This fork combines the original CLI changes with the latest
+  updates.
+
+  <br><br>
+
+  This means you can now enjoy the original experience with the new features:
+
+  <br><br>
+
+  <img src="/cli/preview.png">
+
+  <br>
+  <br>
+  <h1>Where to get the CLI tool</h1>
+
+  Please see <a href="https://www.npmjs.com/package/@squoosh/cli">this page</a>
+  for installation instructions. Please ignore the "Project no longer
+  maintained" notice; this project currently works just fine with the latest
+  version of that tool (v0.7.3). If compatibility ever breaks, we'll ship our
+  own fork of the CLI tool that contains the needed fixes.
+
+  <br>
+  <br>
+  <h1>Example usage</h1>
+
+  First, install the tool
+  <a href="https://www.npmjs.com/package/@squoosh/cli">from here</a>.
+
+  <br><br>
+
+  Choose the settings you want, then click the CLI button
+  ( <img class="center-img" width="18" height="16" src="/cli/icon.png"> ).
+  Pay close attention to the message at the bottom; some codecs (such as
+  Browser JPEG) can't be used from the commandline, though codecs such as
+  MozJPEG and OxiPNG, can be. If your codec is supported, the needed command
+  will be stored in your clipboard.
+
+  The commands generated can be quite lengthy. For the sake of example, we'll
+  use this auto-generated OxiPNG example:
+  <br>
+  <pre><code>
+    npx @squoosh/cli --oxipng '{"level":2,"interlace":false}'
+  </code></pre>
+
+  If you installed the command globally with <code>npm -g</code>, then you'll need to
+  replace the starting part of the command. In our example case, like so:
+  <br>
+  <pre><code>
+    squoosh-cli --oxipng '{"level":2,"interlace":false}'
+  </code></pre>
+
+  <i>Note that the example commands exclude the file name; you'll need to add
+    that yourself, as shown below.</i>
+
+  <br><br>
+
+  Now, open your favorite terminal. Paste the generated CLI command, and then
+  add the name of the file you wish to optimize:
+  <br>
+  <pre><code>
+    squoosh-cli --oxipng '{"level":2,"interlace":false}' my_file.jpg
+  </code></pre>
+
+  You should get something like this:
+  <br>
+  <pre><code>
+    $ squoosh-cli --oxipng '{"level":2,"interlace":false}' my_file.jpg
+    0/1 ⠏ ▐▨▨▨▨▨╌╌╌╌╌▌ Encoding (16 threads)
+
+    1/1 ✔ Squoosh results:
+     my_file.jpg: 522.57KB
+      └ my_file.png → 460.10KB (88.0%)
+  </code></pre>
+
+  This should go without saying, but some codecs can actually make a file
+  larger after conversion (especially when re-encoding a lossy file into
+  lossless), so be sure you understand what each
+  <a href="https://en.wikipedia.org/wiki/Image_file_format">file format</a>
+  is trying to
+  achieve.
+
+  <br>
+  <br>
+  <h1>Caveats</h1>
+
+  This project specifically aims to retain original CLI functionality.
+  Brand-new and experimental codecs will not immediately have CLI support, but
+  receive support in future as things progress.
+
+</div>
+
+<br>
+<hr>
+<br>
+
+<footer>
+  Original code by Google. This fork reintroduces the CLI component for
+  terminal use and is maintained by
+  <a href="https://www.frostoven.com">Frostoven</a>.
+  <br />
+  <br />
+  We create video games and scientific tools on
+  <a href="https://github.com/frostoven">GitHub</a>. If you like our
+  work, please consider supporting us on
+  <a href="https://www.patreon.com/frostoven">Patreon</a>
+  or
+  <a href="https://www.paypal.com/donate/?hosted_button_id=F9TUSZKQLQTRL">
+    PayPal
+  </a>.
+</footer>
+
+<br>
+
+</body>
+</html>
