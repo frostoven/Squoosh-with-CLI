@@ -1,19 +1,19 @@
 html {
   --pink: #ff3385;
-  --hot-pink: #ff0066;
+  --hot-pink: #e76193;
   --white: #fff;
   --black: #000;
   --off-black: #1d1d1d;
-  --blue: #5fb4e4;
+  --blue: #895eb0;
   --dim-blue: #0a7bcc;
-  --deep-blue: #09f;
+  --deep-blue: #64aad9;
   --light-blue: #76c8ff;
   --less-light-gray: #bcbcbc;
   --medium-light-gray: #d1d1d1;
   --light-gray: #eaeaea;
   --dark-gray: #333;
   --dim-text: #343a3e;
-  --dark-text: #142630;
+  --dark-text: #ffffff;
 
   /* Old stuff: */
   --button-fg: rgb(95, 180, 228);
