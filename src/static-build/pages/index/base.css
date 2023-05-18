@@ -39,7 +39,6 @@ body {
 
 body {
   background-image: url('crt-scanline.png');
-  /*backdrop-filter: blur(0.5);*/
   background-repeat: repeat-x;
   animation: move-down 12s linear infinite;
 }
