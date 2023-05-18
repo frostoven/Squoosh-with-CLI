@@ -166,7 +166,7 @@ const encodeOptions: {
 }
 ```
 
-[squoosh]: https://squoosh.app
+[squoosh]: https://squoosh.frostoven.com
 [codecs.ts]: https://github.com/GoogleChromeLabs/squoosh/blob/dev/libsquoosh/src/codecs.ts
 [butteraugli]: https://github.com/google/butteraugli
 [readfile]: https://nodejs.org/api/fs.html#fs_fspromises_readfile_path_options

@@ -34,8 +34,8 @@ interface Output {
 const toOutput: Output = {
   'index.html': renderPage(<IndexPage />),
   'manifest.json': JSON.stringify({
-    name: 'Squoosh',
-    short_name: 'Squoosh',
+    name: 'term_squoosh',
+    short_name: 'term_squoosh',
     start_url: '/?utm_medium=PWA&utm_source=launcher',
     display: 'standalone',
     orientation: 'any',
@@ -54,8 +54,7 @@ const toOutput: Output = {
         purpose: 'maskable',
       },
     ],
-    description:
-      'Compress and compare images with different codecs, right in your browser.',
+    description: 'An updated fork of Squoosh that preserves CLI functionality.',
     lang: 'en',
     categories: ['photo', 'productivity', 'utilities'],
     screenshots: [],

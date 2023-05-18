@@ -54,6 +54,6 @@ You can make use of the auto optimizer by using “auto” as the config object.
 $ npx @squoosh/cli --wp2 auto test.png
 ```
 
-[squoosh]: https://squoosh.app
+[squoosh]: https://squoosh.frostoven.com
 [codecs.ts]: https://github.com/GoogleChromeLabs/squoosh/blob/dev/libsquoosh/src/codecs.ts
 [butteraugli]: https://github.com/google/butteraugli

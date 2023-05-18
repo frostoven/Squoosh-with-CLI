@@ -50,4 +50,4 @@ To develop for Squoosh:
 
 Squoosh is an open-source project that appreciates all community involvement. To contribute to the project, follow the [contribute guide](/CONTRIBUTING.md).
 
-[squoosh]: https://squoosh.app
+[squoosh]: https://squoosh.frostoven.com
