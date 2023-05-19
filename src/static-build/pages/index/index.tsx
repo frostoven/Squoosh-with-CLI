@@ -28,6 +28,7 @@ const Index: FunctionalComponent<Props> = () => (
   <html lang="en">
     <head>
       <title>term_squoosh</title>
+      <meta charSet="UTF-8" />
       <meta
         name="description"
         content="An updated fork of Squoosh that preserves CLI functionality."
