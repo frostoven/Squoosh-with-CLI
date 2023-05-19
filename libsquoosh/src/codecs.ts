@@ -218,16 +218,17 @@ export const preprocessors = {
         buffer: Uint8Array,
         width: number,
         height: number,
-        { numColors, dither }: { numColors: number; dither: number },
-      ) =>
-        new ImageData(
-          imageQuant.quantize(buffer, width, height, numColors, dither),
+        { maxNumColors, dither }: { maxNumColors: number; dither: number },
+      ) => {
+        return new ImageData(
+          imageQuant.quantize(buffer, width, height, maxNumColors, dither),
           width,
           height,
         );
+      };
     },
     defaultOptions: {
-      numColors: 255,
+      maxNumColors: 255,
       dither: 1.0,
     },
   },
