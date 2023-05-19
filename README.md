@@ -14,7 +14,7 @@ occasionally get corrupted by some process duplication.
 This fork introduces addition pages as static HTML. I didn't have the time to
 figure out how to correctly hook this up into the dev process (though it's
 integrated into prod); for now, static pages can be tested in dev with
-`npx http-server static-pages`.
+`npx http-server staticPages`.
 
 The original README follows below.
 
