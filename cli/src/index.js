@@ -4,11 +4,20 @@ import { program } from 'commander/esm.mjs';
 import JSON5 from 'json5';
 import path from 'path';
 import { promises as fsp } from 'fs';
+import fs from 'fs';
 import { cpus } from 'os';
 import ora from 'ora';
 import kleur from 'kleur';
+import EventEmitter from 'events';
 
 import { ImagePool, preprocessors, encoders } from '@squoosh/lib';
+// import { ImagePool, preprocessors, encoders } from '../../libsquoosh/build/index.js';
+
+EventEmitter.defaultMaxListeners = 64;
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error(`Unhandled Rejection at: ${promise} reason: ${reason}`);
+});
 
 function clamp(v, min, max) {
   if (v < min) return min;
@@ -102,7 +111,12 @@ async function getInputFiles(paths) {
 }
 
 async function processFiles(files) {
-  files = await getInputFiles(files);
+  try {
+    files = await getInputFiles(files);
+  } catch (error) {
+    console.error('->', error);
+    return process.exit(1);
+  }
 
   const imagePool = new ImagePool(cpus().length);
 
@@ -110,21 +124,19 @@ async function processFiles(files) {
   const progress = progressTracker(results);
 
   progress.setStatus('Decoding...');
+
   progress.totalOffset = files.length;
   progress.setProgress(0, files.length);
-
-  // Create output directory
-  await fsp.mkdir(program.opts().outputDir, { recursive: true });
 
   let decoded = 0;
   let decodedFiles = await Promise.all(
     files.map(async (file) => {
       const buffer = await fsp.readFile(file);
       const image = imagePool.ingestImage(buffer);
-      await image.decoded;
+      const decodedImage = await image.decoded;
       results.set(image, {
         file,
-        size: (await image.decoded).size,
+        size: decodedImage.size,
         outputs: [],
       });
       progress.setProgress(++decoded, files.length);
@@ -219,7 +231,16 @@ program
     'Target Butteraugli distance for auto optimizer',
     '1.4',
   )
-  .action(processFiles);
+  .action((files) => {
+    const outputDir = program.opts().outputDir;
+    fs.mkdir(outputDir, { recursive: true }, async (error) => {
+      if (error) {
+        console.error(error);
+        return process.exit(1);
+      }
+      await processFiles(files);
+    });
+  });
 
 // Create a CLI option for each supported preprocessor
 for (const [key, value] of Object.entries(preprocessors)) {

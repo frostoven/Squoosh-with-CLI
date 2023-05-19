@@ -582,8 +582,7 @@ export default class Compress extends Component<Props, State> {
       );
 
       if (result === 'usage') {
-        // TODO bookm: send this to Frostoven usage instructions.
-        open('https://www.npmjs.com/package/@squoosh/cli');
+        open('https://squoosh.frostoven.com/cli');
       }
     } catch (err) {
       this.props.showSnack(`Error getting CLI command. Error ${err}`);

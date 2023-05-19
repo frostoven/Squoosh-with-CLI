@@ -7,9 +7,9 @@ This is an updated modified version that preserves the old stuff. It does not
 aim to preserve strict compatibility, but does aim to preserve old
 functionality.
 
-**Important:** Always delete `.tmp` before doing a prod build, and delete
-`.tmp` if you're experiencing weird bugs during development. It appears to
-occasionally get corrupted by some process duplication.
+**Important:** Always delete `.tmp` and `build` before doing a prod build, and
+delete `.tmp` if you're experiencing weird bugs during development. It appears
+to occasionally get corrupted by some process duplication.
 
 This fork introduces addition pages as static HTML. I didn't have the time to
 figure out how to correctly hook this up into the dev process (though it's
