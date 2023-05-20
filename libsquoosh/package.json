@@ -1,7 +1,7 @@
 {
-  "name": "@squoosh/lib",
+  "name": "@frostoven/libsquoosh",
   "version": "0.4.1",
-  "description": "A Node library for Squoosh",
+  "description": "The Node backend of the Squoosh CLI package",
   "public": true,
   "main": "./build/index.js",
   "files": [
@@ -12,10 +12,10 @@
   },
   "keywords": [],
   "author": "Google Chrome Developers <chromium-dev@google.com>",
-  "homepage": "https://github.com/GoogleChromeLabs/squoosh",
+  "homepage": "https://squoosh.frostoven.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GoogleChromeLabs/squoosh.git"
+    "url": "git@github.com:frostoven/squoosh.frostoven.com.git"
   },
   "license": "Apache-2.0",
   "engines": {

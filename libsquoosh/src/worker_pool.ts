@@ -116,7 +116,7 @@ export default class WorkerPool<I, O> {
       try {
         const result = await cb(msg);
         parentPort!.postMessage({ result, id });
-      } catch (e) {
+      } catch (e: any) {
         parentPort!.postMessage({ error: e.message, id });
       }
     });

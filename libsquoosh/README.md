@@ -1,21 +1,34 @@
 # libSquoosh
 
-libSquoosh is an _experimental_ way to run all the codecs you know from the [Squoosh] web app directly inside your own JavaScript program. libSquoosh uses a worker pool to parallelize processing images. This way you can apply the same codec to many images at once.
+libSquoosh is an _experimental_ JavaScript backend used by its related
+[CLI package](https://www.npmjs.com/package/@frostoven/squoosh-cli). While you
+may use this library in your own projects, please beware that it's not
+considered production-ready for general use, and there are no immediate plans
+to make it so. If you use this package, you do so at your own risk.
 
-libSquoosh is currently not the fastest image compression tool in town and doesn’t aim to be. It is, however, fast enough to compress many images sufficiently quick at once.
+libSquoosh uses a worker pool to parallelize processing images. This way you
+can apply the same codec to many images at once.
+
+libSquoosh is currently not the fastest image compression tool in town and
+doesn't aim to be. It is, however, fast enough to compress many images
+sufficiently quick at once.
+
+Please note that this is a fork of
+[the original library](https://www.npmjs.com/package/@squoosh/lib), which has
+since been retired. This fork continues that work and has some bug fixes.
 
 ## Installation
 
 libSquoosh can be installed to your local project with the following command:
 
 ```
-$ npm install @squoosh/lib
+$ npm install @frostoven/libsquoosh
 ```
 
 You can start using the libSquoosh by adding these lines to the top of your JS program:
 
 ```js
-import { ImagePool } from '@squoosh/lib';
+import { ImagePool } from '@frostoven/libsquoosh';
 import { cpus } from 'os';
 const imagePool = new ImagePool(cpus().length);
 ```
