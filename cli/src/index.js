@@ -10,7 +10,7 @@ import ora from 'ora';
 import kleur from 'kleur';
 import EventEmitter from 'events';
 
-import { ImagePool, preprocessors, encoders } from '@squoosh/lib';
+import { ImagePool, preprocessors, encoders } from '@frostoven/libsquoosh';
 // import { ImagePool, preprocessors, encoders } from '../../libsquoosh/build/index.js';
 
 EventEmitter.defaultMaxListeners = 64;

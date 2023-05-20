@@ -1,21 +1,30 @@
 # Squoosh CLI
 
-Squoosh CLI is an _experimental_ way to run all the codecs you know from the [Squoosh] web app on your command line using WebAssembly. The Squoosh CLI uses a worker pool to parallelize processing images. This way you can apply the same codec to many images at once.
+Squoosh CLI is an experimental way to run all the codecs you know from the
+[Squoosh](https://squoosh.frostoven.com) web app on your command line using
+WebAssembly. The Squoosh CLI uses a worker pool to parallelize processing
+images. This way you can apply the same codec to many images at once.
 
-Squoosh CLI is currently not the fastest image compression tool in town and doesn’t aim to be. It is, however, fast enough to compress many images sufficiently quick at once.
+Squoosh CLI is currently not the fastest image compression tool in town and
+doesn't aim to be. It is, however, fast enough to compress many images
+sufficiently quick at once.
+
+Please note that this is a fork of
+[the original library](https://www.npmjs.com/package/@squoosh/cli), which has
+since been retired. This fork continues that work and has some bugs fixes.
 
 ## Installation
 
 The Squoosh CLI can be used straight from the command line without installing using `npx`:
 
 ```
-$ npx @squoosh/cli <options...>
+$ npx @frostoven/squoosh-cli <options...>
 ```
 
 Of course, you can also install the Squoosh CLI:
 
 ```
-$ npm i -g @squoosh/cli
+$ npm i -g @frostoven/squoosh-cli
 $ squoosh-cli <options...>
 ```
 
@@ -51,7 +60,7 @@ Squoosh CLI has an _experimental_ auto optimizer that compresses an image as muc
 You can make use of the auto optimizer by using “auto” as the config object.
 
 ```
-$ npx @squoosh/cli --wp2 auto test.png
+$ npx @frostoven/squoosh-cli --wp2 auto test.png
 ```
 
 [squoosh]: https://squoosh.frostoven.com
