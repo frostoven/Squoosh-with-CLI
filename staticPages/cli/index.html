@@ -56,6 +56,8 @@
 
     pre {
       background-color: #323232;
+      padding-left: 24px;
+      white-space: break-spaces;
     }
 
     hr {
@@ -116,14 +118,14 @@
   use this auto-generated OxiPNG example:
   <br>
   <pre><code>
-    npx @frostoven/squoosh-cli --oxipng '{"level":2,"interlace":false}'
+npx @frostoven/squoosh-cli --oxipng '{"level":2,"interlace":false}'
   </code></pre>
 
   If you installed the command globally with <code>npm -g</code>, then you'll need to
   replace the starting part of the command. In our example case, like so:
   <br>
   <pre><code>
-    squoosh-cli --oxipng '{"level":2,"interlace":false}'
+squoosh-cli --oxipng '{"level":2,"interlace":false}'
   </code></pre>
 
   <i>Note that the example commands exclude the file name; you'll need to add
@@ -135,18 +137,18 @@
   add the name of the file you wish to optimize:
   <br>
   <pre><code>
-    squoosh-cli --oxipng '{"level":2,"interlace":false}' my_file.jpg
+squoosh-cli --oxipng '{"level":2,"interlace":false}' my_file.jpg
   </code></pre>
 
   You should get something like this:
   <br>
   <pre><code>
-    $ squoosh-cli --oxipng '{"level":2,"interlace":false}' my_file.jpg
-    0/1 ⠏ ▐▨▨▨▨▨╌╌╌╌╌▌ Encoding (16 threads)
+$ squoosh-cli --oxipng '{"level":2,"interlace":false}' my_file.jpg
+0/1 ⠏ ▐▨▨▨▨▨╌╌╌╌╌▌ Encoding (16 threads)
 
-    1/1 ✔ Squoosh results:
-     my_file.jpg: 522.57KB
-      └ my_file.png → 460.10KB (88.0%)
+1/1 ✔ Squoosh results:
+ my_file.jpg: 522.57KB
+  └ my_file.png → 460.10KB (88.0%)
   </code></pre>
 
   This should go without saying, but some codecs can actually make a file
