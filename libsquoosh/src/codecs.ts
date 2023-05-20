@@ -460,19 +460,20 @@ export const codecs = {
           buffer: Uint8ClampedArray | ArrayBuffer,
           width: number,
           height: number,
-          opts: { level: number },
+          opts: { level: number; interlace: boolean },
         ) => {
           const simplePng = pngEncDec.encode(
             new Uint8Array(buffer),
             width,
             height,
           );
-          return oxipng.optimise(simplePng, opts.level, false);
+          return oxipng.optimise(simplePng, opts.level, opts.interlace);
         },
       };
     },
     defaultEncoderOptions: {
       level: 2,
+      interlace: false,
     },
     autoOptimize: {
       option: 'level',
