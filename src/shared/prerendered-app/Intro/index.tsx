@@ -179,6 +179,8 @@ export default class Intro extends Component<Props, State> {
                 preserveAspectRatio="xMidYMid slice"
               ></svg>
             )}
+            <br />
+            <br />
             <div
               class={style.loadImgContent}
               style={{ visibility: __PRERENDER__ ? 'hidden' : '' }}
@@ -200,6 +202,7 @@ export default class Intro extends Component<Props, State> {
               </div>
             </div>
           </div>
+          <br />
           <div className={style.termText}>
             No images are ever uploaded to our servers. All image processing is
             done right in your browser.
@@ -207,6 +210,8 @@ export default class Intro extends Component<Props, State> {
         </div>
         <div class={style.bottomContainer}></div>
         <div class={style.footer}>
+          <br />
+          <br />
           <div class={style.contentPadding}>
             <div className={style.termText}>
               Original code by Google, who has unfortunately dropped support for

@@ -121,7 +121,6 @@
 .load-img-content {
   background-color: #29342b;
   border-radius: 1px;
-  margin-top: 64px;
   --size: 29rem;
   max-width: var(--size);
   width: 100vw;
