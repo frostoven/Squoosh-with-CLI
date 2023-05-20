@@ -1,7 +1,7 @@
 # Fork details
 
 Google decided to punish the heathens by removing all CLI features from
-Squoosh. This was apparently due to staffing issues.
+Squoosh.
 
 This is an updated modified version that preserves the old stuff. It does not
 aim to preserve strict compatibility, but does aim to preserve old
