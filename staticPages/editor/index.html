@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Editor of term_squoosh">
+  <title>term_squoosh - Editor</title>
+
+  <style>
+    * {
+      color: #fdfdfd;
+      background-color: #232323;
+      font-family: 'noto_sansregular', Arial, sans-serif;
+    }
+
+    #blog-data {
+      max-width: 900px;
+      margin: auto;
+    }
+  </style>
+
+  <script>
+    const content = document.getElementById('blog-data');
+    if (content) {
+      content.innerHTML = 'Restarting app...';
+    }
+
+    window.location = '/';
+  </script>
+</head>
+<body>
+
+<div id="blog-data">
+  term_squoosh - Editor
+</div>
+
+</body>
+</html>
