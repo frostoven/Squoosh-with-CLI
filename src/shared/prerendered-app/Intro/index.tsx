@@ -229,7 +229,7 @@ export default class Intro extends Component<Props, State> {
             <footer class={style.footerItems}>
               <a
                 class={style.footerLink}
-                href="https://github.com/GoogleChromeLabs/squoosh/blob/dev/README.md#privacy"
+                href="https://github.com/frostoven/squoosh.frostoven.com/tree/frostoven#privacy"
               >
                 Privacy
               </a>
@@ -238,9 +238,9 @@ export default class Intro extends Component<Props, State> {
               </a>
               <a
                 class={style.footerLink}
-                href="https://github.com/GoogleChromeLabs/squoosh"
+                href="https://github.com/frostoven/squoosh.frostoven.com/tree/frostoven"
               >
-                Github
+                GitHub
               </a>
             </footer>
           </div>

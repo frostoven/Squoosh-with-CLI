@@ -38,7 +38,7 @@ export function generateCliInvocation(
   }
   return [
     'npx',
-    '@squoosh/cli',
+    '@frostoven/squoosh-cli',
     ...(processor.resize.enabled
       ? ['--resize', cliJson(processor.resize)]
       : []),
