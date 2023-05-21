@@ -1,6 +1,6 @@
 {
   "name": "@frostoven/squoosh-cli",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "A CLI for Squoosh",
   "public": true,
   "type": "module",
@@ -23,7 +23,7 @@
     "node": " ^12.20.2 || ^14.13.1 || ^16.0.0 "
   },
   "dependencies": {
-    "@frostoven/libsquoosh": "0.4.1",
+    "@frostoven/libsquoosh": "^0.4.2",
     "commander": "7.2.0",
     "json5": "2.2.0",
     "kleur": "4.1.4",
