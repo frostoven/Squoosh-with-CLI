@@ -16,7 +16,7 @@ import { ImagePool, preprocessors, encoders } from '@frostoven/libsquoosh';
 EventEmitter.defaultMaxListeners = 64;
 
 process.on('unhandledRejection', (reason, promise) => {
-  console.error(`Unhandled Rejection at: ${promise} reason: ${reason}`);
+  console.error(`Unhandled Rejection:`, promise, '\nTrace:', { reason });
 });
 
 function clamp(v, min, max) {
