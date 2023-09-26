@@ -4,6 +4,7 @@ import { codecs as encoders, preprocessors } from './codecs.js';
 import WorkerPool from './worker_pool.js';
 import { autoOptimize } from './auto-optimizer.js';
 import type ImageData from './image_data';
+import JSON5 from 'json5';
 
 export { ImagePool, encoders, preprocessors };
 type EncoderKey = keyof typeof encoders;
@@ -177,18 +178,27 @@ class Image {
         throw Error(`Invalid preprocessor "${name}"`);
       }
       const preprocessorName = name as PreprocessorKey;
-      const preprocessorOptions = Object.assign(
-        {},
-        preprocessors[preprocessorName].defaultOptions,
-        options,
-      );
-      this.decoded = this.workerPool.dispatchJob({
-        operation: 'preprocess',
-        preprocessorName,
-        image: await this.decoded,
-        options: preprocessorOptions,
-      });
-      await this.decoded;
+
+      let preprocessorOptions;
+      if (typeof options === 'string') {
+        preprocessorOptions = {
+          ...preprocessors[preprocessorName].defaultOptions,
+          ...JSON5.parse(options),
+        }
+      }
+      else {
+        preprocessorOptions = {
+          ...preprocessors[preprocessorName].defaultOptions,
+        };
+
+        this.decoded = this.workerPool.dispatchJob({
+          operation: 'preprocess',
+          preprocessorName,
+          image: await this.decoded,
+          options: preprocessorOptions,
+        });
+        await this.decoded;
+      }
     }
   }
 
@@ -213,9 +223,9 @@ class Image {
       const encName = name as EncoderKey;
       const encRef = encoders[encName];
       const encConfig =
-        typeof options === 'string'
-          ? options
-          : Object.assign({}, encRef.defaultEncoderOptions, options);
+        typeof options === 'string' && options !== 'auto'
+          ? { ...encRef.defaultEncoderOptions, ...JSON5.parse(options) }
+          : { ...encRef.defaultEncoderOptions, ...options };
       this.encodedWith[encName] = this.workerPool.dispatchJob({
         operation: 'encode',
         bitmap,
