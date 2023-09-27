@@ -167,6 +167,7 @@ export default class Intro extends Component<Props, State> {
             />
           )}
           <h1 class={style.logoContainer}>term_squoosh</h1>
+          <span className={style.termText}>Image optimizer and converter</span>
           <span className={style.termText}>
             An updated fork of Squoosh that{' '}
             <a href="/cli">preserves CLI functionality</a>
