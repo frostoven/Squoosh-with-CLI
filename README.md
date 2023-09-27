@@ -1,24 +1,46 @@
 # Fork details
 
-Google decided to punish the heathens by removing all CLI features from
-Squoosh.
+Google has removed all CLI features from their
+[Squoosh](https://github.com/GoogleChromeLabs/squoosh) project.
 
-This is an updated modified version that preserves the old stuff. It does not
-aim to preserve strict compatibility, but does aim to preserve old
-functionality.
+This fork merges newer Squoosh browser features with the old removed CLI stuff.
+It does not aim to strictly retain compatibility with the original project, but
+does aim to preserve old CLI functionality, including the
+[UI CLI command generator](https://squoosh.frostoven.com/cli/preview.png).
+
+**Usage:**
+
+- This fork currently runs over at https://squoosh.frostoven.com
+- Installation and usage details here: https://squoosh.frostoven.com/cli
+
+### Maintenance info
+
+For now, the core purpose of this fork is to fix bugs in the CLI portion of the
+code. The CLI portion had quite a few problems when it was retired from the
+original project, many of which are now fixed in this fork.
+
+I maintain these features and fix bugs in my spare time, and generally have my
+hands full with an
+[indie game I'm making](https://github.com/frostoven/Cosmosis).
+Please consider
+[supporting my work](https://www.patreon.com/frostoven)
+to get more hands on deck; I would like to hire someone to work on this project
+full-time so that it may reach its full potential.
+
+### Build info
 
 **Important:** Always delete `.tmp` and `build` before doing a prod build, and
 delete `.tmp` if you're experiencing weird bugs during development. It appears
 to occasionally get corrupted by some process duplication.
 
-This fork introduces addition pages as static HTML. I didn't have the time to
+This fork introduces additional pages as static HTML. I didn't have the time to
 figure out how to correctly hook this up into the dev process (though it's
 integrated into prod); for now, static pages can be tested in dev with
 `npx http-server staticPages`.
 
-The original README follows below.
-
 <br>
+
+_The original README follows below._
 
 ---
 
