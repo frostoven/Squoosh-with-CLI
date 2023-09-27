@@ -15,7 +15,7 @@
   "homepage": "https://squoosh.frostoven.com",
   "repository": {
     "type": "git",
-    "url": "git@github.com:frostoven/squoosh.frostoven.com.git"
+    "url": "git@github.com:frostoven/Squoosh-with-CLI.git"
   },
   "license": "Apache-2.0",
   "engines": {
