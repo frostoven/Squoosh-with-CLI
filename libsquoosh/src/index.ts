@@ -189,16 +189,17 @@ class Image {
       else {
         preprocessorOptions = {
           ...preprocessors[preprocessorName].defaultOptions,
+          ...(options as object),
         };
-
-        this.decoded = this.workerPool.dispatchJob({
-          operation: 'preprocess',
-          preprocessorName,
-          image: await this.decoded,
-          options: preprocessorOptions,
-        });
-        await this.decoded;
       }
+
+      this.decoded = this.workerPool.dispatchJob({
+        operation: 'preprocess',
+        preprocessorName,
+        image: await this.decoded,
+        options: preprocessorOptions,
+      });
+      await this.decoded;
     }
   }
 
