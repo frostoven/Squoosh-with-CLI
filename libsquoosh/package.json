@@ -1,6 +1,6 @@
 {
   "name": "@frostoven/libsquoosh",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "The Node backend of the Squoosh CLI package",
   "public": true,
   "main": "./build/index.js",
