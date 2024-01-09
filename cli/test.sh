@@ -9,6 +9,10 @@ if ! test -d /tmp/squoosh-test; then
   exit 1
 fi
 
+# =============================================================================
+# Ensure the CLI tool doesn't freeze or crash when used correctly.
+# =============================================================================
+
 npx @frostoven/squoosh-cli --oxipng '{"level":2,"interlace":false}' /tmp/squoosh-test/
 npx @frostoven/squoosh-cli --oxipng '{"level":2}' /tmp/squoosh-test/
 
@@ -21,6 +25,19 @@ npx @frostoven/squoosh-cli --webp '{"target_size":0,"target_PSNR":0,"method":4,"
 
 npx @frostoven/squoosh-cli --avif '{}' /tmp/squoosh-test/
 npx @frostoven/squoosh-cli --avif '{"cqLevel":33,"cqAlphaLevel":-1,"denoiseLevel":0,"tileColsLog2":0,"tileRowsLog2":0,"speed":6,"subsample":1,"chromaDeltaQ":false,"sharpness":0,"tune":0}' /tmp/squoosh-test/
+
+# =============================================================================
+# Test preprocessor options
+# =============================================================================
+
+echo "Images in /tmp/squoosh-test will now be degraded."
+echo "Press Enter when ready."
+read answer
+
+# Bugfix for issue #3 - ensure preprocessor options are used.
+npx @frostoven/squoosh-cli --quant '{maxNumColors:2}' --oxipng '{"level":2}' /tmp/squoosh-test/
+
+# =============================================================================
 
 # JXL is still beta.
 # npx @frostoven/squoosh-cli --jxl '{"quality":75,"progressive":false,"epf":-1,"lossyPalette":false,"decodingSpeedTier":0,"photonNoiseIso":0,"lossyModular":false}' /tmp/squoosh-test/
