@@ -19,16 +19,19 @@ let libVersion;
 try {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
-  const packageJson = JSON.parse(fs.readFileSync(
-    `${__dirname}/../package.json`).toString(),
+  const packageJson = JSON.parse(
+    fs.readFileSync(`${__dirname}/../package.json`).toString(),
   );
-  const libJson = JSON.parse(fs.readFileSync(
-    `${__dirname}/../node_modules/@frostoven/libsquoosh/package.json`).toString(),
+  const libJson = JSON.parse(
+    fs
+      .readFileSync(
+        `${__dirname}/../node_modules/@frostoven/libsquoosh/package.json`,
+      )
+      .toString(),
   );
   cliVersion = 'v' + packageJson.version;
   libVersion = 'v' + libJson.version;
-}
-catch (_) {
+} catch (_) {
   cliVersion = 'Version: unknown';
   libVersion = 'Version: unknown';
 }
@@ -47,7 +50,7 @@ function clamp(v, min, max) {
   return v;
 }
 
-const suffix = [ 'B', 'KB', 'MB' ];
+const suffix = ['B', 'KB', 'MB'];
 
 function prettyPrintSize(size) {
   const base = Math.floor(Math.log2(size) / 10);
@@ -91,11 +94,7 @@ function prettyProgressTracker(results) {
     let out = '';
     for (const result of results.values()) {
       out += `\n ${kleur.cyan(result.file)}: ${prettyPrintSize(result.size)}`;
-      for (const {
-        outputFile,
-        size: outputSize,
-        infoText
-      } of result.outputs) {
+      for (const { outputFile, size: outputSize, infoText } of result.outputs) {
         out += `\n  ${kleur.dim('└')} ${kleur.cyan(
           outputFile.padEnd(5),
         )} → ${prettyPrintSize(outputSize)}`;
@@ -121,8 +120,7 @@ function plainProgressTracker() {
     setProgress: (current, total, file) => {
       if (file) {
         console.log('Progress:', `${current}/${total} (${file})`);
-      }
-      else {
+      } else {
         console.log('Working...');
       }
     },
@@ -133,24 +131,27 @@ function plainProgressTracker() {
 async function getInputFiles(paths) {
   const validFiles = [];
 
+  // Reading from STDIN more than once doesn't make sense, so only check the first arg.
+  if (paths[0] === '-') {
+    paths[0] = '/dev/stdin';
+  }
+
   for (const inputPath of paths) {
     const files = (await fsp.lstat(inputPath)).isDirectory()
       ? (await fsp.readdir(inputPath, { withFileTypes: true }))
-        .filter((dirent) => dirent.isFile())
-        .map((dirent) => path.join(inputPath, dirent.name))
-      : [ inputPath ];
+          .filter((dirent) => dirent.isFile())
+          .map((dirent) => path.join(inputPath, dirent.name))
+      : [inputPath];
     for (const file of files) {
       try {
         await fsp.stat(file);
-      }
-      catch (err) {
+      } catch (err) {
         if (err.code === 'ENOENT') {
           console.warn(
             `Warning: Input file does not exist: ${path.resolve(file)}`,
           );
           continue;
-        }
-        else {
+        } else {
           throw err;
         }
       }
@@ -165,19 +166,20 @@ async function getInputFiles(paths) {
 async function processAllFiles(allFiles, maxConcurrentFiles) {
   try {
     allFiles = await getInputFiles(allFiles);
-  }
-  catch (error) {
+  } catch (error) {
     console.error('->', error);
     return process.exit(1);
   }
 
   const results = new Map();
 
-  if (allFiles.length < prettyLogLimit && allFiles.length < maxConcurrentFiles) {
+  if (
+    allFiles.length < prettyLogLimit &&
+    allFiles.length < maxConcurrentFiles
+  ) {
     const progress = prettyProgressTracker(results);
     return await processBatch(allFiles, progress, maxConcurrentFiles, results);
-  }
-  else {
+  } else {
     const progress = plainProgressTracker(results);
     console.log(
       kleur.bold(`Will process at most ${maxConcurrentFiles} files at a time`),
@@ -190,7 +192,9 @@ async function processAllFiles(allFiles, maxConcurrentFiles) {
       const fileBatch = allFiles.slice(offsetStart, offsetEnd);
       console.log(
         `Processing batch ${i + 1} of ${iterations} ` +
-        `(images ${offsetStart + 1} through ${offsetStart + fileBatch.length})`,
+          `(images ${offsetStart + 1} through ${
+            offsetStart + fileBatch.length
+          })`,
       );
       await processBatch(fileBatch, progress, maxConcurrentFiles, results);
       results.clear();
@@ -272,10 +276,13 @@ async function processBatch(files, progressTracker, threadCount, results) {
       const outputPath = path.join(
         program.opts().outputDir,
         path.basename(originalFile, path.extname(originalFile)) +
-        program.opts().suffix,
+          program.opts().suffix,
       );
       for (const output of Object.values(image.encodedWith)) {
-        const outputFile = `${outputPath}.${(await output).extension}`;
+        let outputFile = `${outputPath}.${(await output).extension}`;
+        if (program.opts().stdout) {
+          outputFile = '/dev/stdout';
+        }
         await fsp.writeFile(outputFile, (await output).binary);
         results
           .get(image)
@@ -296,9 +303,11 @@ async function processBatch(files, progressTracker, threadCount, results) {
 
 program
   .name('squoosh-cli')
+  .usage('<files...> or - to read from STDIN')
   .arguments('<files...>')
   .option('-d, --output-dir <dir>', 'Output directory', '.')
   .option('-s, --suffix <suffix>', 'Append suffix to output files', '')
+  .option('--stdout', 'Write single file to STDOUT instead of --output-dir')
   .option(
     '-c, --max-concurrent-files <count>',
     'Amount of files to process at once (defaults to CPU cores)',
@@ -317,21 +326,32 @@ program
   .action((files) => {
     const outputDir = program.opts().outputDir;
     const maxConcurrentFiles = parseInt(program.opts().maxConcurrentFiles);
-    fs.mkdir(outputDir, { recursive: true }, async (error) => {
-      if (error) {
-        console.error(error);
-        return process.exit(1);
+
+    // Maybe write to STDOUT. Otherwise an output dir.
+    if (program.opts().stdout) {
+      if (files.length != 1) {
+        console.error(
+          '--stdout option only make sense with a single input file.',
+        );
       }
-      await processAllFiles(files, maxConcurrentFiles);
-    });
+      processAllFiles(files, maxConcurrentFiles);
+    } else {
+      fs.mkdir(outputDir, { recursive: true }, async (error) => {
+        if (error) {
+          console.error(error);
+          return process.exit(1);
+        }
+        await processAllFiles(files, maxConcurrentFiles);
+      });
+    }
   });
 
 // Create a CLI option for each supported preprocessor
-for (const [ key, value ] of Object.entries(preprocessors)) {
+for (const [key, value] of Object.entries(preprocessors)) {
   program.option(`--${key} [config]`, value.description);
 }
 // Create a CLI option for each supported encoder
-for (const [ key, value ] of Object.entries(encoders)) {
+for (const [key, value] of Object.entries(encoders)) {
   program.option(
     `--${key} [config]`,
     `Use ${value.name} to generate a .${value.extension} file with the given configuration`,
@@ -340,7 +360,7 @@ for (const [ key, value ] of Object.entries(encoders)) {
 
 program.version(
   `CLI version:        ${cliVersion}\n` +
-  `libSquoosh version: ${libVersion}\n` +
-  `Node version:       ${process.version}`,
+    `libSquoosh version: ${libVersion}\n` +
+    `Node version:       ${process.version}`,
 );
 program.parse(process.argv);
