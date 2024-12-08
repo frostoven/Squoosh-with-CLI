@@ -15,6 +15,12 @@ export default {
     dir: 'build',
     format: 'cjs',
     assetFileNames: '[name]-[hash][extname]',
+    /*
+    `fetch` in Node.js dones't support `file:` protocol,
+    add this to make fetch a local undefined variable so the codecs
+    won't load via `fetch()`
+    */
+    banner: 'var fetch;',
   },
   plugins: [
     resolve(),
